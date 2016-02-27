@@ -4,9 +4,6 @@ import lombok.Value;
 
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 
-/**
- * @author albert
- */
 @Value
 public class CompleteTaskCommand {
 

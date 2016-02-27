@@ -10,9 +10,6 @@ import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-/**
- * @author albert
- */
 @Document(indexName = "tasks", type = "entry")
 @NoArgsConstructor
 @AllArgsConstructor

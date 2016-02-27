@@ -1,12 +1,9 @@
 package com.premonition.todo.app.domain.task.commands;
 
-import javax.validation.constraints.NotNull;
-
 import lombok.Value;
 
-/**
- * @author albert
- */
+import javax.validation.constraints.NotNull;
+
 @Value
 public class CreateTaskCommand {
 

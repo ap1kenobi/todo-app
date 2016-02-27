@@ -2,9 +2,6 @@ package com.premonition.todo.app.rest.task.requests;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * @author albert
- */
 public class ModifyTitleRequest {
 	
 	@NotNull
