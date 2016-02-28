@@ -1,14 +1,8 @@
 package com.premonition.todo.app.notify.task;
 
-import com.premonition.todo.app.domain.task.events.TaskCompletedEvent;
-import com.premonition.todo.app.domain.task.events.TaskCreatedEvent;
-import com.premonition.todo.app.domain.task.events.TaskEvent;
-import com.premonition.todo.app.domain.task.events.TaskStarredEvent;
-import com.premonition.todo.app.domain.task.events.TaskUnstarredEvent;
-import com.premonition.todo.app.domain.task.events.TaskTitleModifiedEvent;
+import com.premonition.todo.app.domain.task.events.*;
 import com.premonition.todo.app.query.task.TaskEntry;
 import com.premonition.todo.app.query.task.TaskEntryRepository;
-
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
