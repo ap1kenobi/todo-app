@@ -8,10 +8,6 @@ import org.axonframework.eventsourcing.annotation.EventSourcingHandler;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Task
- * @author albert
- */
 public class Task extends AbstractAnnotatedAggregateRoot<String> {
 
 	/**

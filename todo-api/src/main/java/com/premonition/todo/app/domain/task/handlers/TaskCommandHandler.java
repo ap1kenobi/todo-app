@@ -5,6 +5,7 @@ import com.premonition.todo.app.domain.task.commands.*;
 import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,7 +14,7 @@ public class TaskCommandHandler {
     private final Repository<Task> tasks;
 
     @Autowired
-    public TaskCommandHandler(Repository<Task> tasks) {
+    public TaskCommandHandler(@Qualifier("taskRepository") Repository<Task> tasks) {
         this.tasks = tasks;
     }
 
