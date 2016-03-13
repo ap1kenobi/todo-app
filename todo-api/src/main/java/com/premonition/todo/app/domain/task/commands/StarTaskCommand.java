@@ -10,6 +10,6 @@ import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 @NoArgsConstructor
 public class StarTaskCommand {
 
-	@TargetAggregateIdentifier
-	private String id;
+    @TargetAggregateIdentifier
+    private String id;
 }

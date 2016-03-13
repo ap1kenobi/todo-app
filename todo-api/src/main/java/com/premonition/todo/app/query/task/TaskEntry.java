@@ -18,17 +18,17 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @EqualsAndHashCode
 public class TaskEntry {
 
-	@Id
-	private String id;
-	
-	private String username;
-	
-	@Setter
-	private String title;
-	
-	@Setter
-	private boolean completed;
-	
-	@Setter
-	private boolean starred;
+    @Id
+    private String id;
+
+    private String username;
+
+    @Setter
+    private String title;
+
+    @Setter
+    private boolean completed;
+
+    @Setter
+    private boolean starred;
 }

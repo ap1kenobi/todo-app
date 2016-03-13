@@ -5,5 +5,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
 public interface TaskEntryRepository extends ElasticsearchRepository<TaskEntry, String> {
-	Page<TaskEntry> findByUsernameAndCompleted(String username, boolean completed, Pageable pageable);
+    Page<TaskEntry> findByUsernameAndCompleted(String username, boolean completed, Pageable pageable);
 }

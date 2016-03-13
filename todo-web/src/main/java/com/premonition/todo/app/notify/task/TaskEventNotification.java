@@ -5,8 +5,8 @@ import lombok.Value;
 
 @Value
 public class TaskEventNotification {
-	
-	private String type;
-	
-	private TaskEvent data;
+
+    private String type;
+
+    private TaskEvent data;
 }

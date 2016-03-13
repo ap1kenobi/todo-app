@@ -20,8 +20,7 @@ public class TaskCommandHandler {
 
     @CommandHandler
     void on(CreateTaskCommand command) {
-        final Task task = new Task(command);
-        tasks.add(task);
+        tasks.add(new Task(command.getId(), command.getUsername(), command.getTitle()));
     }
 
     @CommandHandler

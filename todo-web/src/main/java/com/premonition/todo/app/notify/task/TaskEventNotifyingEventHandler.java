@@ -10,48 +10,48 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TaskEventNotifyingEventHandler {
-	
-	private final SimpMessageSendingOperations messagingTemplate;
-	
-	private final TaskEntryRepository taskEntryRepository;
-	
-	@Autowired
-	public TaskEventNotifyingEventHandler(SimpMessageSendingOperations messagingTemplate, TaskEntryRepository taskEntryRepository) {
-		this.messagingTemplate = messagingTemplate;
-		this.taskEntryRepository = taskEntryRepository;
-	}
-	
-	@EventHandler
-	void on(TaskCreatedEvent event) {
-		publish(event.getUsername(), event);
-	}
 
-	@EventHandler
-	void on(TaskCompletedEvent event) {
-		TaskEntry task = taskEntryRepository.findOne(event.getId());
-		publish(task.getUsername(), event);
-	}
-	
-	@EventHandler
-	void on(TaskTitleModifiedEvent event) {
-		TaskEntry task = taskEntryRepository.findOne(event.getId());
-		publish(task.getUsername(), event);
-	}
-	
-	@EventHandler
-	void on (TaskStarredEvent event) {
-		TaskEntry task = taskEntryRepository.findOne(event.getId());
-		publish(task.getUsername(), event);
-	}
-	
-	@EventHandler
-	void on (TaskUnstarredEvent event) {
-		TaskEntry task = taskEntryRepository.findOne(event.getId());
-		publish(task.getUsername(), event);
-	}
-	
-	private void publish(String username, TaskEvent event) {
-		String type = event.getClass().getSimpleName();
-		this.messagingTemplate.convertAndSendToUser(username, "/queue/task-updates", new TaskEventNotification(type, event));
-	}
+    private final SimpMessageSendingOperations messagingTemplate;
+
+    private final TaskEntryRepository taskEntryRepository;
+
+    @Autowired
+    public TaskEventNotifyingEventHandler(SimpMessageSendingOperations messagingTemplate, TaskEntryRepository taskEntryRepository) {
+        this.messagingTemplate = messagingTemplate;
+        this.taskEntryRepository = taskEntryRepository;
+    }
+
+    @EventHandler
+    void on(TaskCreatedEvent event) {
+        publish(event.getUsername(), event);
+    }
+
+    @EventHandler
+    void on(TaskCompletedEvent event) {
+        TaskEntry task = taskEntryRepository.findOne(event.getId());
+        publish(task.getUsername(), event);
+    }
+
+    @EventHandler
+    void on(TaskTitleModifiedEvent event) {
+        TaskEntry task = taskEntryRepository.findOne(event.getId());
+        publish(task.getUsername(), event);
+    }
+
+    @EventHandler
+    void on(TaskStarredEvent event) {
+        TaskEntry task = taskEntryRepository.findOne(event.getId());
+        publish(task.getUsername(), event);
+    }
+
+    @EventHandler
+    void on(TaskUnstarredEvent event) {
+        TaskEntry task = taskEntryRepository.findOne(event.getId());
+        publish(task.getUsername(), event);
+    }
+
+    private void publish(String username, TaskEvent event) {
+        String type = event.getClass().getSimpleName();
+        this.messagingTemplate.convertAndSendToUser(username, "/queue/task-updates", new TaskEventNotification(type, event));
+    }
 }

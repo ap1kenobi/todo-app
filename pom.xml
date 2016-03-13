@@ -70,17 +70,17 @@
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
                 <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>3.3.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.axonframework</groupId>
+                <artifactId>axon-test</artifactId>
+                <version>${axon.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -110,7 +110,9 @@
                         <image>todo-app</image>
                         <imageName>todo-app</imageName>
                         <baseImage>java:8</baseImage>
-                        <entryPoint>["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                        <entryPoint>
+                            ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]
+                        </entryPoint>
                         <dockerHost>https://192.168.99.100:2376</dockerHost>
                         <exposes>8080</exposes>
                         <resources>
