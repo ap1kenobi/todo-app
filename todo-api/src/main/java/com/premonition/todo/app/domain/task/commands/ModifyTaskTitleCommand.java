@@ -1,17 +1,21 @@
 package com.premonition.todo.app.domain.task.commands;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 
 import javax.validation.constraints.NotNull;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ModifyTaskTitleCommand {
 
-	@TargetAggregateIdentifier
-	private final String id;
+    @TargetAggregateIdentifier
+    private String id;
 
-	@NotNull
-	private final String title;
+    @NotNull
+    private String title;
 }
 

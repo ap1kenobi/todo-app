@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
+@RequestMapping("/api/tasks")
 public class TaskController {
 
 	private final IdentifierFactory identifierFactory = new DefaultIdentifierFactory();
@@ -35,37 +36,37 @@ public class TaskController {
 	@Autowired
 	private CommandGateway commandGateway;
 
-	@RequestMapping(value = "/api/tasks", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	Page<TaskEntry> findAll(Principal principal, @RequestParam(required = false, defaultValue = "false") boolean completed, Pageable pageable) {
 		return taskEntryRepository.findByUsernameAndCompleted(principal.getName(), completed, pageable);
 	}
 
-	@RequestMapping(value = "/api/tasks", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void createTask(Principal principal, @RequestBody @Valid CreateTaskRequest request) {
 		commandGateway.send(new CreateTaskCommand(identifierFactory.generateIdentifier(), principal.getName(), request.getTitle()));
 	}
 
-	@RequestMapping(value = "/api/tasks/{identifier}/title", method = RequestMethod.POST)
+	@RequestMapping(value = "{identifier}/title", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void createTask(@PathVariable String identifier, @RequestBody @Valid ModifyTitleRequest request) {
 		commandGateway.send(new ModifyTaskTitleCommand(identifier, request.getTitle()));
 	}
 
-	@RequestMapping(value = "/api/tasks/{identifier}/complete", method = RequestMethod.POST)
+	@RequestMapping(value = "{identifier}/complete", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void createTask(@PathVariable String identifier) {
 		commandGateway.send(new CompleteTaskCommand(identifier));
 	}
 
-	@RequestMapping(value = "/api/tasks/{identifier}/star", method = RequestMethod.POST)
+	@RequestMapping(value = "{identifier}/star", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void starTask(@PathVariable String identifier) {
 		commandGateway.send(new StarTaskCommand(identifier));
 	}
 
-	@RequestMapping(value = "/api/tasks/{identifier}/unstar", method = RequestMethod.POST)
+	@RequestMapping(value = "{identifier}/unstar", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void unstarTask(@PathVariable String identifier) {
 		throw new RuntimeException("Could not unstar task..."); 

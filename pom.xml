@@ -34,6 +34,16 @@
             </dependency>
             <dependency>
                 <groupId>org.axonframework</groupId>
+                <artifactId>axon-distributed-commandbus</artifactId>
+                <version>${axon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jgroups</groupId>
+                <artifactId>jgroups</artifactId>
+                <version>3.6.8.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.axonframework</groupId>
                 <artifactId>axon-integration</artifactId>
                 <version>${axon.version}</version>
             </dependency>
