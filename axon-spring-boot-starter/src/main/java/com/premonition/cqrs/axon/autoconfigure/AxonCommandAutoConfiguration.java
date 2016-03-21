@@ -28,7 +28,7 @@ public class AxonCommandAutoConfiguration {
     }
 
     @Bean
-    public CommandGatewayFactoryBean<CommandGateway> commandGatewayFactoryBean(CommandBus commandBus) {
+    public CommandGatewayFactoryBean<CommandGateway> commandGatewayFactoryBean(@Qualifier("commandBus") CommandBus commandBus) {
         CommandGatewayFactoryBean<CommandGateway> factory = new CommandGatewayFactoryBean<CommandGateway>();
         factory.setCommandBus(commandBus);
         return factory;
