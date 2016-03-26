@@ -10,7 +10,13 @@ The Todo application makes use of the following design patterns:
 
 Building
 ========
-> mvn package
+To create a standard spring boot executable jar
+> mvn clean install
+
+To create a docker image
+> mvn clean install -Pdocker
+To override the default docker host and port
+> mvn -Ddocker.machine.host=<docker.host> -Ddocker.machine.port=<docker.ssl.port> clean install -Pdocker 
 
 Running
 =======

@@ -11,8 +11,10 @@
 
     <properties>
         <axon.version>2.4.3</axon.version>
-        <spring.boot.version>1.3.2.RELEASE</spring.boot.version>
+        <spring.boot.version>1.3.3.RELEASE</spring.boot.version>
         <java.version>1.8</java.version>
+        <docker.machine.host>192.168.99.100</docker.machine.host>
+        <docker.machine.port>2376</docker.machine.port>
     </properties>
 
     <dependencyManagement>
@@ -113,7 +115,7 @@
                         <entryPoint>
                             ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]
                         </entryPoint>
-                        <dockerHost>https://192.168.99.100:2376</dockerHost>
+                        <dockerHost>https://${docker.machine.host}:${docker.machine.port}</dockerHost>
                         <exposes>8080</exposes>
                         <resources>
                             <resource>
