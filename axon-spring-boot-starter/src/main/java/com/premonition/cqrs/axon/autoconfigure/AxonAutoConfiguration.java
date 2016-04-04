@@ -3,10 +3,12 @@ package com.premonition.cqrs.axon.autoconfigure;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.axonframework.eventhandling.*;
 import org.axonframework.eventhandling.amqp.spring.ListenerContainerLifecycleManager;
-import org.axonframework.eventhandling.amqp.spring.SpringAMQPConsumerConfiguration;
 import org.axonframework.eventhandling.amqp.spring.SpringAMQPTerminal;
 import org.axonframework.serializer.json.JacksonSerializer;
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.AmqpAdmin;
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.Queue;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,8 +21,8 @@ import static org.springframework.amqp.core.BindingBuilder.bind;
 @Import({AxonCommandAutoConfiguration.class, AxonQueryAutoConfiguration.class})
 public class AxonAutoConfiguration {
 
-    public static final String DEFAULT_EVENT_BUS_EXCHANGE_NAME = "Axon.EventBus";
-    public static final String DEFAULT_EVENT_BUS_QUEUE_NAME = DEFAULT_EVENT_BUS_EXCHANGE_NAME + ".Queue";
+    private static final String DEFAULT_EVENT_BUS_EXCHANGE_NAME = "Axon.EventBus";
+    private static final String DEFAULT_EVENT_BUS_QUEUE_NAME = DEFAULT_EVENT_BUS_EXCHANGE_NAME + ".Queue";
 
     @Bean
     public EventBus eventBus(EventBusTerminal terminal) {
@@ -45,7 +47,7 @@ public class AxonAutoConfiguration {
 
     @Bean
     public Queue eventBusQueue(AmqpAdmin admin, FanoutExchange exchange) {
-        final Queue queue = new Queue("Axon.EventBus.Queue");
+        final Queue queue = new Queue(DEFAULT_EVENT_BUS_QUEUE_NAME);
         admin.declareQueue(queue);
         admin.declareBinding(bind(queue).to(exchange));
         return queue;
@@ -53,10 +55,6 @@ public class AxonAutoConfiguration {
 
     @Bean
     public ListenerContainerLifecycleManager listenerContainerLifecycleManager() {
-        final ListenerContainerLifecycleManager lifecycleManager = new ListenerContainerLifecycleManager();
-        final SpringAMQPConsumerConfiguration configuration = new SpringAMQPConsumerConfiguration();
-        configuration.setQueueName(DEFAULT_EVENT_BUS_QUEUE_NAME);
-        lifecycleManager.setDefaultConfiguration(configuration);
-        return lifecycleManager;
+        return new ListenerContainerLifecycleManager();
     }
 }

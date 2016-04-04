@@ -11,20 +11,27 @@ The Todo application makes use of the following design patterns:
 Building
 ========
 To create a standard spring boot executable jar
-> mvn clean install
+```
+mvn clean install
+```
 
 To create a docker image
-> mvn clean install -Pdocker
+```
+mvn clean install -Pdocker
+```
 
 To override the default docker host and port
-> mvn -Ddocker.machine.host='docker.host' -Ddocker.machine.port='docker.ssl.port' clean install -Pdocker 
+```
+mvn -Ddocker.machine.host='docker.host' -Ddocker.machine.port='docker.ssl.port' clean install -Pdocker 
+```
 
 Running
 =======
-> cd todo-web
-
-> mvn spring-boot:run
-
+```
+# rabbitmq must be running 
+cd todo-web
+mvn spring-boot:run
+```
 Browse to http://localhost:8080/index.html
 
 Implementation
@@ -33,6 +40,7 @@ Implementation notes:
 - The event store is backed by a filesystem implementation which comes with Axon
 - The query model is backed by a local ElasticSearch node (running in the same JVM) using Spring Data ElasticSearch
 - The user interface is updated asynchronously via stompjs over websockets using Spring Websockets support
+- This implementation uses rabbitmq as event bus. Without configuration overrides, rabbitmq must be running on the same host as the web application
 
 Documentation
 =============
