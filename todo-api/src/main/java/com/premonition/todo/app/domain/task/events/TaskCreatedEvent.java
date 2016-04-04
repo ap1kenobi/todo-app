@@ -1,13 +1,17 @@
 package com.premonition.todo.app.domain.task.events;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskCreatedEvent implements TaskEvent {
 
-    private final String id;
+    private String id;
 
-    private final String username;
+    private String username;
 
-    private final String title;
+    private String title;
 }

@@ -1,9 +1,13 @@
 package com.premonition.todo.app.domain.task.events;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskStarredEvent implements TaskEvent {
 
-    private final String id;
+    private String id;
 }
