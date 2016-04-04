@@ -32,7 +32,7 @@ Running
 cd todo-web
 mvn spring-boot:run
 ```
-Browse to http://localhost:8080/index.html
+Browse to (http://localhost:8080/index.html)
 
 Implementation
 ==============
