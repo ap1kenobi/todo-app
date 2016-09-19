@@ -116,7 +116,9 @@
                             ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${project.build.finalName}.jar"]
                         </entryPoint>
                         <dockerHost>https://${docker.machine.host}:${docker.machine.port}</dockerHost>
-                        <exposes>8080</exposes>
+                        <exposes>
+                                 <expose>8080</expose>
+                           </exposes>
                         <resources>
                             <resource>
                                 <targetPath>/</targetPath>
