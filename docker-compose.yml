@@ -1,0 +1,12 @@
+version: '2'
+services:
+  todo-web:
+    image: todo-app
+    ports:
+     - "8080:8080"
+    depends_on:
+     - consul
+  consul:
+    image: consul
+    ports:
+    - "8500:8500"
